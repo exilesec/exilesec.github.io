@@ -2,6 +2,12 @@
 ---
 @import "{{ site.theme }}";
 
-header .btn {
+header h1, header .btn {
   display: none !important;
+}
+
+/* Eğer o üstteki boşluğu da komple daraltmak istersen bunu da ekle */
+header {
+  padding-top: 20px !important;
+  padding-bottom: 10px !important;
 }

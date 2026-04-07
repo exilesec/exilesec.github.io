@@ -2,7 +2,7 @@
 ---
 @import "{{ site.theme }}";
 
-header h1, header .btn {
+.btn {
   display: none !important;
 }
 

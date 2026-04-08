@@ -1,158 +1,99 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exile Security</title>
-    <style>
-        /* --- TEMEL STİLLER (Karanlık Teknik Tema) --- */
-        body {
-            margin: 0; padding: 0;
-            background-color: #0d1117; /* GitHub Dark Background */
-            color: #c9d1d9; /* Soluk Beyaz Yazı */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-        }
-
-        a { color: #58a6ff; text-decoration: none; transition: 0.3s; }
-        a:hover { color: #7ee787; text-decoration: underline; }
-        h1, h2, h3 { color: #f0f6fc; font-weight: 600; margin-top: 0; }
-        ul { list-style-type: none; padding: 0; }
-        li { margin-bottom: 8px; }
-
-        /* --- HEADER (Navigasyon) --- */
-        header {
-            background-color: #161b22;
-            padding: 15px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #30363d;
-        }
-
-        .logo { font-size: 1.4em; font-weight: bold; font-family: monospace; color: #7ee787; }
-
-        nav ul { display: flex; gap: 20px; margin: 0; }
-        nav a { font-size: 0.9em; font-weight: 500; }
-
-        /* --- ANA İÇERİK (İki Sütunlu Grid) --- */
-        main {
-            display: grid;
-            grid-template-columns: 320px 1fr; /* Sol sütun sabit, sağ sütun esnek */
-            gap: 40px;
-            padding: 40px 50px;
-            max-width: 1400px; margin: 0 auto;
-        }
-
-        /* --- ORTAK KUTU STİLİ --- */
-        .box {
-            background-color: #161b22;
-            padding: 25px;
-            border-radius: 6px;
-            border: 1px solid #30363d;
-            margin-bottom: 25px;
-        }
-
-        .box h2 {
-            border-bottom: 1px solid #30363d;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            font-size: 1.2em;
-            font-family: monospace;
-            color: #7ee787; /* Yeșil Bașlık */
-        }
-
-        /* --- SOL SÜTUN --- */
-        .left-col .profile-pic {
-            width: 150px; height: 150px;
-            background-color: #30363d; /* Placeholder PP */
-            border-radius: 50%;
-            margin: 0 auto 20px auto;
-            display: flex; align-items: center; justify-content: center;
-            border: 3px solid #7ee787;
-            font-family: monospace; font-size: 2em;
-        }
-
-        .cert-list li::before { content: "📜 "; }
-        .goal-list li::before { content: "🎯 "; }
-
-        /* --- SAĞ SÜTUN --- */
-        .right-col h1.main-title { font-size: 2.2em; margin-bottom: 10px; }
-        .right-col p.subtitle { color: #8b949e; margin-bottom: 30px; }
-
-        .portfolio-box h2::before { content: "# "; } /* Portfolyo bașlığına # koy */
-
-        .writeup-platform { margin-bottom: 25px; }
-        .writeup-platform h3 { font-size: 1.1em; color: #58a6ff; margin-bottom: 10px; }
-        .writeup-list li {
-            background-color: #0d1117;
-            padding: 10px 15px;
-            border-radius: 4px;
-            border: 1px solid #21262d;
-            display: flex; justify-content: space-between;
-        }
-        .writeup-list li:hover { border-color: #58a6ff; }
-        .date { color: #8b949e; font-size: 0.85em; }
-
-        /* --- RESPONSIVE (Mobil Ayarı) --- */
-        @media (max-width: 900px) {
-            header { flex-direction: column; padding: 15px; text-align: center; }
-            nav ul { flex-direction: column; gap: 10px; padding-top: 15px; }
-            main { grid-template-columns: 1fr; padding: 20px; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pentester Portfolio</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background-color: #0d1117; color: #c9d1d9; }
+    .navbar { display: flex; justify-content: space-between; padding: 15px 30px; background: #161b22; }
+    .nav-links a { margin-left: 20px; color: #58a6ff; text-decoration: none; }
+    .container { max-width: 1000px; margin: auto; padding: 20px; }
+    h1, h2 { color: #58a6ff; }
+    .card { background: #161b22; padding: 20px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.5); }
+    .tag { display: inline-block; background: #21262d; padding: 5px 10px; margin: 5px; border-radius: 5px; font-size: 14px; }
+    .stats { display: flex; gap: 20px; flex-wrap: wrap; }
+    .stat-box { flex: 1; min-width: 120px; background: #21262d; padding: 15px; border-radius: 8px; text-align: center; }
+    a { color: #58a6ff; text-decoration: none; }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 8px; }
+  </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">root@exilesec:~#</div>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="/writeups">Write-up'larım</a></li>
-                <li><a href="scripts">Script'lerim</a></li>
-                <li><a href="/certs">Diğer Sertifikalarım</a></li>
-            </ul>
-        </nav>
-    </header>
+  <div class="navbar">
+    <div><strong>root@exilesec:~#</strong></div>
+    <div class="nav-links">
+      <a href="#about">Home</a>
+      <a href="#writeups">Write-up'larım</a>
+      <a href="#scripts">Scriptlerim</a>
+      <a href="#certs">Diğer Sertifikalarım</a>
+    </div>
+  </div>
 
-    <main>
+  <div class="container">
 
-        <aside class="left-col">
-            <div class="box">
-                <div class="profile-pic">P.P</div> <h2>Kısa Giriş</h2>
-                <p>2025 yılında siber güvenlik ve sızma testi alanındaki yolculuğuma başladım. Burada, geliştirdiğim programları, yazılımları ve araçları sizlerle paylaşacağım.</p>
-            </div>
+    <div id="about" class="card">
+      <h1>Hakkımda</h1>
+      <p>İstanbul Gelişim Üniversitesi Bilişim Güvenliği Teknolojisi öğrencisiyim. Aktif olarak siber güvenlik ve penetration testing alanında kendimi geliştiriyorum.</p>
+      <p>Hedefim: <strong>1 yıl içinde junior pentester olarak sektöre giriş yapmak.</strong></p>
+      <p>Özellikle web güvenliği (XSS, SQLi, LFI) üzerine yoğunlaşıyorum.</p>
+    </div>
 
-            <div class="box" id="certs">
-                <h2>Sertifikalarım</h2>
-                <ul class="cert-list">
-                    <li>Siber Kulüpler Birliği - Bulut Bilişim ve Güvenliği</li>
-                    <li>AWS - Cloud Security Excellence</li>
-                    <li>Siber Kulüpler Birliği - Ofansif Güvenlik Hastası</li>
-                </ul>
-            </div>
+    <div class="card">
+      <h2>Teknik Yetenekler</h2>
+      <div>
+        <span class="tag">Python</span>
+        <span class="tag">Linux</span>
+        <span class="tag">Nmap</span>
+        <span class="tag">Burp Suite</span>
+        <span class="tag">SQL Injection</span>
+        <span class="tag">XSS</span>
+      </div>
+    </div>
 
-            <div class="box">
-                <h2>Beceriler</h2>
-                <ul class="skill-list">
-                    <li>İşletim Sistemi: Linux, Pardus, Windows</li>
-                    <li>Ofansif: Nmap, Metasploit, Burp Suite, WireShark</li>
-                    <li>Programlama: Python, C, Html, CSS, Javascript</li>
-                </ul> 
-            </div>
-            <div class="box">
-                <h2>Dil</h2>
-                <ul class="lang-list">
-                    <li>Türkçe: Anadil</li>
-                    <li>İngilizce: B1</li>
-                </ul>
-            </div>
-        </aside>
+    <div class="card">
+      <h2>İstatistikler</h2>
+      <div class="stats">
+        <div class="stat-box"><h3>10+</h3><p>Makine</p></div>
+        <div class="stat-box"><h3>5+</h3><p>Script</p></div>
+        <div class="stat-box"><h3>3+</h3><p>Proje</p></div>
+      </div>
+    </div>
 
-        <section class="right-col">
-            <h1 class="main-title">Hakkımda</h1>
-            <p class="subtitle">İstanbul Gelişim Üniversitesi'nde Bilişim Güvenliği Teknolojisi bölümünde okumaktayım ve henüz 1. sınıfım. Pentester olma hedeflerim doğrultusunda her geçen gün kendime bir şeyler katıp bu yolda yürümeye devam ediyorum. Gerekirse python ile kendime script yazarak hazır araçlara mahsur kalmadan sunuculara sızmaya çalışıyorum. Burası benim blogum ve buraya çözdüğüm zafiyetli makineleri, scriptlerimi ve sertifikalarımı yükleyeceğim. Liseyi Bilişim bölümünde; Yazılım Geliştirme olarak okudum. Siber güvenlikte de her geçen gün yeni bilgiler edinerek kendimi geliştirdim ve şuan da aktif olarak geliştirmekteyim. Kendimden bahsedecek olursam da bilgisayarlara ve siber güvenliğe olan merakım liseden beri var ve ofansif olarak ilerliyorum. <br>Bir yandan da ekibimle birlikte AutoSecure Coach adında bir proje üstünde çalışıyoruz. Bu projenin amacı; bir mobil uygulama/web sitesi için "OWASP TOP 10" zafiyetlerini teker teker deneyen ve bunu kullanıcıya basit bir şekilde raporlayan otomasyon bir projedir. Benim ise bu projedeki rolüm, zafiyetleri deneyecek olan scriptleri yazmaktır. Bu sayede hem kullanıcıya hızlı bir şekilde küçük bir pentest yapıyor ve basit bir rapor sunuyoruz. Yazdığım bazı scriptleri <a href="musabumeyrdamar.me/scripts">BURADAN</a> görebilirsiniz. </p>
-        </section>
+    <div id="writeups" class="card">
+      <h2>Write-up'larım</h2>
+      <ul>
+        <li>VulnHub - Kioptrix 1</li>
+        <li>VulnHub - Metasploitable 2</li>
+        <li>VulnHub - Earth</li>
+      </ul>
+    </div>
+
+    <div id="scripts" class="card">
+      <h2>Scriptlerim</h2>
+      <ul>
+        <li>Python Port Scanner</li>
+        <li>Directory Brute Tool</li>
+        <li>Basic XSS Scanner</li>
+      </ul>
+    </div>
+
+    <div id="certs" class="card">
+      <h2>Sertifikalarım</h2>
+      <ul>
+        <li>Siber Kulüpler Birliği - Bulut Bilişim ve Güvenliği</li>
+        <li>AWS - Cloud Security Excellence</li>
+        <li>Siber Kulüpler Birliği - Ofansif Güvenlik Hastası</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>İletişim</h2>
+      <p>GitHub: <a href="https://github.com/exilesec">Github</a></p>
+      <p><a href="mailto:msb.dmr44@gmail.com">Mail</a></p>
+    </div>
+
+  </div>
 </body>
 </html>

@@ -1,83 +1,1305 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exile Security</title>
-  <style>
-    body { margin: 0; font-family: Arial, sans-serif; background-color: #0d1117; color: #c9d1d9; }
-    .navbar { display: flex; justify-content: space-between; padding: 15px 30px; background: #161b22; }
-    .nav-links a { margin-left: 20px; color: #58a6ff; text-decoration: none; }
-    .container { max-width: 1000px; margin: auto; padding: 20px; }
-    h1, h2 { color: #58a6ff; }
-    .card { background: #161b22; padding: 20px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.5); }
-    .tag { display: inline-block; background: #21262d; padding: 5px 10px; margin: 5px; border-radius: 5px; font-size: 14px; }
-    .stats { display: flex; gap: 20px; flex-wrap: wrap; }
-    .stat-box { flex: 1; min-width: 120px; background: #21262d; padding: 15px; border-radius: 8px; text-align: center; }
-    a { color: #58a6ff; text-decoration: none; }
-    ul { padding-left: 20px; }
-    li { margin-bottom: 8px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Musab Umeyr Damar - Bilişim Güvenliği Teknolojisi öğrencisi. Siber güvenlik, penetrasyon testi ve güvenlik araştırmaları.">
+    <meta name="keywords" content="Musab Umeyr Damar, siber güvenlik, bilişim güvenliği, penetrasyon testi, ethical hacking, cybersecurity">
+    <meta name="author" content="Musab Umeyr Damar">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="theme-color" content="#0a0a0f" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f5f5fa" media="(prefers-color-scheme: light)">
+    <meta name="color-scheme" content="dark light">
+    <link rel="canonical" href="https://exilesec.github.io">
+    <link rel="alternate" hreflang="tr" href="https://exilesec.github.io">
+    <link rel="alternate" hreflang="x-default" href="https://exilesec.github.io">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Musab Umeyr Damar | Bilişim Güvenliği Teknolojisi">
+    <meta property="og:description" content="Bilişim Güvenliği Teknolojisi öğrencisi. Siber güvenlik, penetrasyon testi, Python, Linux ve güvenlik araştırmaları.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://exilesec.github.io">
+    <meta property="og:locale" content="tr_TR">
+    <meta property="og:site_name" content="Musab Umeyr Damar - Portfolio">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Musab Umeyr Damar | Bilişim Güvenliği Teknolojisi">
+    <meta name="twitter:description" content="Bilişim Güvenliği Teknolojisi öğrencisi. Siber güvenlik, penetrasyon testi, Python, Linux ve güvenlik araştırmaları.">
+    <meta name="twitter:site" content="@exilesec">
+
+    <title>Exile Security</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== CSS Variables ===== */
+        :root {
+            --primary: #00ff88;
+            --primary-dim: #00cc6a;
+            --accent: #00d4ff;
+            --danger: #ff3366;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a2e;
+            --bg-card-hover: #22223a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #8888aa;
+            --border: #2a2a3e;
+            --glow: rgba(0, 255, 136, 0.15);
+            --shadow: rgba(0, 0, 0, 0.4);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f5f5fa;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f0f0f8;
+            --text-primary: #1a1a2e;
+            --text-secondary: #555577;
+            --border: #d0d0e0;
+            --glow: rgba(0, 200, 100, 0.1);
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        /* ===== Reset & Base ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            transition: background 0.4s, color 0.4s;
+            overflow-x: hidden;
+        }
+
+        /* ===== Scrollbar ===== */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-dim);
+            border-radius: 3px;
+        }
+
+        /* ===== Background Grid ===== */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ===== Navigation ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+        }
+
+        .nav-logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-logo span {
+            color: var(--text-secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px var(--glow);
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s;
+        }
+
+        /* ===== Hero Section ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            border: 1px solid var(--primary);
+            border-radius: 50px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            background: var(--glow);
+            animation: pulse-border 3s infinite;
+        }
+
+        @keyframes pulse-border {
+            0%, 100% { box-shadow: 0 0 5px var(--glow); }
+            50% { box-shadow: 0 0 20px var(--glow); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 .highlight {
+            color: var(--primary);
+            position: relative;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #0a0a0f;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dim);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* ===== Terminal Animation ===== */
+        .terminal {
+            margin-top: 3rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            text-align: left;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-dot.red { background: #ff5f57; }
+        .terminal-dot.yellow { background: #ffbd2e; }
+        .terminal-dot.green { background: #28c840; }
+
+        .terminal-body {
+            padding: 1.2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        .terminal-line {
+            opacity: 0;
+            animation: fadeInLine 0.5s forwards;
+        }
+
+        .terminal-line:nth-child(1) { animation-delay: 0.3s; }
+        .terminal-line:nth-child(2) { animation-delay: 0.8s; }
+        .terminal-line:nth-child(3) { animation-delay: 1.3s; }
+        .terminal-line:nth-child(4) { animation-delay: 1.8s; }
+
+        @keyframes fadeInLine {
+            to { opacity: 1; }
+        }
+
+        .terminal-prompt {
+            color: var(--primary);
+        }
+
+        .terminal-cmd {
+            color: var(--text-primary);
+        }
+
+        .terminal-output {
+            color: var(--text-secondary);
+            padding-left: 1rem;
+        }
+
+        /* ===== Sections ===== */
+        section {
+            padding: 5rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header h2 span {
+            color: var(--primary);
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* ===== About ===== */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px var(--glow);
+            transform: translateY(-3px);
+        }
+
+        .stat-card .stat-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card h3 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .stat-card p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* ===== Skills ===== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.8rem;
+            transition: all 0.3s;
+        }
+
+        .skill-category:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px var(--glow);
+            transform: translateY(-3px);
+        }
+
+        .skill-category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .skill-category-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .skill-category h3 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            padding: 0.35rem 0.8rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* ===== Certificates ===== */
+        .certs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .cert-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s;
+        }
+
+        .cert-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px var(--glow);
+            transform: translateY(-3px);
+        }
+
+        .cert-badge {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .cert-info h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .cert-type {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--primary);
+            background: var(--glow);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        .cert-source {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 0.3rem;
+        }
+
+        /* ===== Write-ups ===== */
+        .writeups-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .writeup-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.8rem;
+            text-align: center;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .writeup-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 25px var(--glow);
+            transform: translateY(-5px);
+        }
+
+        .writeup-icon {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .writeup-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .writeup-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ===== Tools Section ===== */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .tool-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .tool-card .tool-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-card h4 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+        }
+
+        .tool-card p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 0.3rem;
+        }
+
+        /* ===== Contact ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.8rem;
+            text-align: center;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .contact-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 25px var(--glow);
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .contact-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ===== Scroll Progress Bar ===== */
+        .scroll-progress {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            z-index: 9999;
+            transition: width 0.1s linear;
+            box-shadow: 0 0 10px var(--primary), 0 0 5px var(--accent);
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+            position: relative;
+            z-index: 1;
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        footer .footer-line {
+            color: var(--primary);
+        }
+
+        /* ===== Scroll Animations ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg-secondary);
+                border-bottom: 1px solid var(--border);
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .terminal {
+                margin-top: 2rem;
+            }
+
+            .terminal-body {
+                font-size: 0.75rem;
+            }
+
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 0.8rem 1rem;
+            }
+
+            .hero {
+                padding: 5rem 1rem 3rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Musab Umeyr Damar",
+        "givenName": "Musab Umeyr",
+        "familyName": "Damar",
+        "jobTitle": "Bilişim Güvenliği Teknolojisi Öğrencisi",
+        "description": "Bilişim Güvenliği Teknolojisi öğrencisi. Siber güvenlik, penetrasyon testi ve güvenlik araştırmaları alanlarında uzmanlaşıyor.",
+        "url": "https://exilesec.github.io",
+        "email": "msb.dmr44@gmail.com",
+        "sameAs": [
+            "https://github.com/exilesec"
+        ],
+        "knowsAbout": [
+            "Cybersecurity",
+            "Information Security",
+            "Python Programming",
+            "C Programming",
+            "Linux Administration",
+            "Pardus",
+            "Penetration Testing",
+            "Network Security",
+            "Nmap",
+            "Burp Suite",
+            "Metasploit Framework",
+            "Web Security",
+            "OSINT"
+        ],
+        "alumniOf": {
+            "@type": "EducationalOrganization",
+            "name": "Bilişim Güvenliği Teknolojisi"
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Musab Umeyr Damar - Bilişim Güvenliği Portfolio",
+        "url": "https://exilesec.github.io",
+        "description": "Musab Umeyr Damar'ın kişisel siber güvenlik portfolyo sayfası.",
+        "inLanguage": "tr"
+    }
+    </script>
 </head>
 <body>
 
-  <div class="navbar">
-    <div><strong><a href="index.html">root@exilesec:~#</a></strong></div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="/writeups">Write-up'larım</a>
-      <a href="/scripts">Scriptlerim</a>
-    </div>
-  </div>
+    <!-- Skip to content - Accessibility & SEO -->
+    <a href="#about" class="skip-link" data-tr="İçeriğe geç" data-en="Skip to content" style="position:absolute;top:-40px;left:0;background:var(--primary);color:#0a0a0f;padding:8px 16px;z-index:9999;font-weight:600;transition:top 0.3s;" onfocus="this.style.top='0'" onblur="this.style.top='-40px'">İçeriğe geç</a>
 
-  <div class="container">
+    <!-- Navigation -->
+    <nav role="navigation" aria-label="Ana navigasyon">
+        <a href="#" class="nav-logo" aria-label="Ana sayfa">&gt; <span>exilesec</span></a>
+        <ul class="nav-links">
+            <li><a href="#about" data-tr="Hakkımda" data-en="About">Hakkımda</a></li>
+            <li><a href="#skills" data-tr="Beceriler" data-en="Skills">Beceriler</a></li>
+            <li><a href="#certificates" data-tr="Sertifikalar" data-en="Certificates">Sertifikalar</a></li>
+            <li><a href="#tools" data-tr="Araçlar" data-en="Tools">Araçlar</a></li>
+            <li><a href="#write-ups" data-tr="Write-ups" data-en="Write-ups">Write-up'larım</a></li>
+            <li><a href="#contact" data-tr="İletişim" data-en="Contact">İletişim</a></li>
+        </ul>
+        <div style="display: flex; align-items: center; gap: 0.8rem;">
+            <button class="theme-toggle" onclick="toggleLang()" aria-label="Dil değiştir" id="lang-toggle" style="font-size:0.8rem;font-weight:700;font-family:'JetBrains Mono',monospace;">TR</button>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Tema değiştir">
+                <span id="theme-icon">&#9790;</span>
+            </button>
+            <button class="hamburger" onclick="toggleMenu()" aria-label="Menü">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
 
-    <div id="about" class="card">
-      <h1>Hakkımda</h1>
-      <p>İstanbul Gelişim Üniversitesi Bilişim Güvenliği Teknolojisi öğrencisiyim. Aktif olarak siber güvenlik ve penetration testing alanında kendimi geliştiriyorum.</p>
-      <p>Hedefim: <strong>1 yıl içinde (mezun olana kadar) junior pentester olarak sektöre giriş yapmak.</strong></p>
-      <p>Özellikle web güvenliği ve ağ güvenliği üzerine yoğunlaşıyorum.</p>
-      <p>Bir yandan da ekibimle AutoSecureCoach adında bir proje üstünde çalışıyoruz. Bu projede hedefimiz; mobil uygulama ve web sitelerine özel "OWASP TOP 10" zafiyetlerini teker teker deneyip, raporlayan bir otomasyon yazmak. Benim buradaki rolüm ise python bilgilerimle scriptleri yazan kişi olmak.</p>
-    </div>
+    <!-- Hero -->
+    <main>
+    <header class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">$ whoami</div>
+            <h1>Musab Umeyr <span class="highlight">Damar</span></h1>
+            <p class="hero-subtitle" data-tr="Bilişim Güvenliği Teknolojisi öğrencisi. Siber güvenlik araştırmacısı ve güvenlik meraklısı." data-en="Information Security Technology student. Cybersecurity researcher and security enthusiast.">Bilişim Güvenliği Teknolojisi öğrencisi. Junior Sızma Testi Uzmanı Adayı.</p>
+            <div class="hero-buttons">
+                <a href="https://github.com/exilesec" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    GitHub
+                </a>
+                <a href="#contact" class="btn btn-outline" data-tr="İletişim" data-en="Contact">İletişim</a>
+            </div>
 
-    <div class="card">
-      <h2>Teknik Yetenekler</h2>
-      <div>
-        <span class="tag">Python</span>
-        <span class="tag">Linux</span>
-        <span class="tag">Nmap</span>
-        <span class="tag">Burp Suite</span>
-        <span class="tag">SQL Injection</span>
-        <span class="tag">XSS</span>
-        <span class="tag">Metasploit</span>
-        <span class="tag">WireShark</span>
-      </div>
-    </div>
+            <!-- Terminal -->
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-dot red"></div>
+                    <div class="terminal-dot yellow"></div>
+                    <div class="terminal-dot green"></div>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">exilesec@kali:~$</span>
+                        <span class="terminal-cmd"> cat about.txt</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="terminal-output" data-tr="Ad: Musab Umeyr Damar" data-en="Name: Musab Umeyr Damar">Ad: Musab Umeyr Damar</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="terminal-output" data-tr="Alan: Bilişim Güvenliği Teknolojisi" data-en="Field: Information Security Technology">Alan: Bilişim Güvenliği Teknolojisi</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="terminal-output" data-tr="Durum: Öğreniyor &amp; Araştırıyor_" data-en="Status: Learning &amp; Researching_">Durum: Öğreniyor & Araştırıyor_<span style="animation: blink 1s infinite;">|</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-    <div class="card">
-      <h2>İstatistikler</h2>
-      <div class="stats">
-        <div class="stat-box"><h3>10+</h3><p>Makine</p></div>
-        <div class="stat-box"><h3>5+</h3><p>Script</p></div>
-        <div class="stat-box"><h3>3+</h3><p>Proje</p></div>
-      </div>
-    </div>
+    <style>
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+    </style>
 
-    <div id="certs" class="card">
-      <h2>Sertifikalarım</h2>
-      <ul>
-        <li>Siber Kulüpler Birliği - Bulut Bilişim ve Güvenliği</li>
-        <li>AWS - Cloud Security Excellence</li>
-        <li>Siber Kulüpler Birliği - Ofansif Güvenlik Haftası</li>
-      </ul>
-    </div>
+    <!-- About -->
+    <section id="about" aria-labelledby="about-heading">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 id="about-heading">// <span data-tr="Hakkımda" data-en="About Me">Hakkımda</span></h2>
+                <p data-tr="Kim olduğum ve ne yaptığım" data-en="Who I am and what I do">Ben Kimim?</p>
+            </div>
+            <div class="about-content fade-in">
+                <article class="about-text">
+                    <p data-tr="Ben Musab Umeyr Damar.İstanbul Gelişim Üniversitesi'nde Bilişim Güvenliği Teknolojisi öğrencisiyim. Siber güvenlik dünyasına olan tutkumla, güvenlik açıklarını tespit etme ve sistemleri daha güvenli hale getirme üzerine çalışıyorum." data-en="I'm Musab Umeyr Damar. I'm an Information Security Technology student at Istanbul Gelisim University. With my passion for cybersecurity, I work on identifying vulnerabilities and making systems more secure.">Ben <strong>Musab Umeyr Damar</strong>.İstanbul Gelişim Üniversitesi'nde Bilişim Güvenliği Teknolojisi öğrencisiyim. Siber güvenlik dünyasına olan tutkumla, güvenlik açıklarını tespit etme ve sistemleri daha güvenli hale getirme üzerine çalışıyorum.</p>
+                    <p data-tr="Linux tabanlı sistemler, ağ güvenliği ve penetrasyon testi alanlarında kendimi sürekli geliştiriyorum. Pardus ve Kali Linux başta olmak üzere çeşitli güvenlik odaklı dağıtımlarla çalışıyorum." data-en="I continuously improve myself in Linux-based systems, network security, and penetration testing. I work with various security-focused distributions, especially Pardus and Kali Linux.">Linux tabanlı sistemler, ağ güvenliği ve penetrasyon testi alanlarında kendimi sürekli geliştiriyorum. Pardus ve Kali Linux başta olmak üzere çeşitli güvenlik odaklı dağıtımlarla çalışıyorum.</p>
+                    <p data-tr="Hedefim, siber güvenlik alanında uzmanlaşarak dijital dünyayı daha güvenli bir yer haline getirmektir." data-en="My goal is to specialize in cybersecurity and make the digital world a safer place.">Hedefim, siber güvenlik alanında uzmanlaşarak dijital dünyayı daha güvenli bir yer haline getirmektir.</p>
+                </article>
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">&#128187;</div>
+                        <h3>Cyber</h3>
+                        <p data-tr="Güvenlik Odaklı" data-en="Security Focused">Güvenlik Odaklı</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">&#128039;</div>
+                        <h3>Linux</h3>
+                        <p>Pardus & Kali</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">&#128270;</div>
+                        <h3>Pentest</h3>
+                        <p data-tr="Güvenlik Testi" data-en="Security Testing">Güvenlik Testi</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">&#128296;</div>
+                        <h3>Dev</h3>
+                        <p>Python & C</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="card">
-      <h2>İletişim</h2>
-      <p><a href="https://github.com/exilesec">Github</a></p>
-      <p><a href="mailto:msb.dmr44@gmail.com">Mail</a></p>
-    </div>
+    <!-- Skills -->
+    <section id="skills" aria-labelledby="skills-heading">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 id="skills-heading">// <span data-tr="Beceriler" data-en="Skills">Beceriler</span></h2>
+                <p data-tr="Kullandığım teknolojiler ve yeteneklerim" data-en="Technologies and skills I use">Kullandığım teknolojiler ve yeteneklerim</p>
+            </div>
+            <div class="skills-grid fade-in">
+                <div class="skill-category">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon">&#128187;</div>
+                        <h3 data-tr="Programlama" data-en="Programming">Programlama</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">Bash</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon">&#128029;</div>
+                        <h3 data-tr="İşletim Sistemleri" data-en="Operating Systems">İşletim Sistemleri</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Pardus</span>
+                        <span class="skill-tag">Kali Linux</span>
+                        <span class="skill-tag">Ubuntu</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon">&#128274;</div>
+                        <h3 data-tr="Siber Güvenlik" data-en="Cybersecurity">Siber Güvenlik</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag" data-tr="Ağ Güvenliği" data-en="Network Security">Ağ Güvenliği</span>
+                        <span class="skill-tag" data-tr="Penetrasyon Testi" data-en="Penetration Testing">Penetrasyon Testi</span>
+                        <span class="skill-tag" data-tr="Web Güvenliği" data-en="Web Security">Web Güvenliği</span>
+                        <span class="skill-tag">OSINT</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  </div>
+    <!-- Certificates -->
+    <section id="certificates" aria-labelledby="certs-heading">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 id="certs-heading">// <span data-tr="Sertifikalarım" data-en="Certificates">Sertifikalarım</span></h2>
+                <p data-tr="Aldığım başarı sertifikaları" data-en="Achievement certificates I've earned">Aldığım başarı sertifikaları</p>
+            </div>
+            <div class="certs-grid fade-in">
+                <div class="cert-card">
+                    <div class="cert-badge">&#127941;</div>
+                    <div class="cert-info">
+                        <h3>Siber Güvenlikte Linux İşletim Sistemleri</h3>
+                        <span class="cert-type" data-tr="Başarı Sertifikası" data-en="Achievement Certificate">Başarı Sertifikası</span>
+                        <p class="cert-source">BTK Akademi</p>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-badge">&#127941;</div>
+                    <div class="cert-info">
+                        <h3>Python ile Siber Güvenlik Uygulamaları</h3>
+                        <span class="cert-type" data-tr="Başarı Sertifikası" data-en="Achievement Certificate">Başarı Sertifikası</span>
+                        <p class="cert-source">BTK Akademi</p>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-badge">&#127941;</div>
+                    <div class="cert-info">
+                        <h3>Ağ Temelleri</h3>
+                        <span class="cert-type" data-tr="Başarı Sertifikası" data-en="Achievement Certificate">Başarı Sertifikası</span>
+                        <p class="cert-source">BTK Akademi</p>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-badge">&#127941;</div>
+                    <div class="cert-info">
+                        <h3>Versiyon Kontrolleri: Git ve GitHub</h3>
+                        <span class="cert-type" data-tr="Başarı Sertifikası" data-en="Achievement Certificate">Başarı Sertifikası</span>
+                        <p class="cert-source">BTK Akademi</p>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-badge">&#9729;</div>
+                    <div class="cert-info">
+                        <h3>Cloud Security Excellence</h3>
+                        <span class="cert-type" data-tr="Başarı Sertifikası" data-en="Achievement Certificate">Başarı Sertifikası</span>
+                        <p class="cert-source">The Big Iam Challenge</p>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-badge">&#9729;</div>
+                    <div class="cert-info">
+                        <h3>Bulut Bilişim ve Güvenliği</h3>
+                        <span class="cert-type" data-tr="Başarı Sertifikası" data-en="Achievement Certificate">Başarı Sertifikası</span>
+                        <p class="cert-source">Siber Kulüpler Birliği</p>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-badge">&#128296;</div>
+                    <div class="cert-info">
+                        <h3>Offensive Security Haftası</h3>
+                        <span class="cert-type" data-tr="Başarı Sertifikası" data-en="Achievement Certificate">Başarı Sertifikası</span>
+                        <p class="cert-source">Siber Kulüpler Birliği</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools -->
+    <section id="tools" aria-labelledby="tools-heading">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 id="tools-heading">// <span data-tr="Araçlar" data-en="Tools">Araçlar</span></h2>
+                <p data-tr="Kullandığım güvenlik araçları" data-en="Security tools I use">Kullandığım güvenlik araçları</p>
+            </div>
+            <div class="tools-grid fade-in">
+                <div class="tool-card">
+                    <div class="tool-icon">&#128269;</div>
+                    <h4>Nmap</h4>
+                    <p data-tr="Ağ Tarama" data-en="Network Scanning">Ağ Tarama</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">&#128375;</div>
+                    <h4>Burp Suite</h4>
+                    <p data-tr="Web Güvenliği" data-en="Web Security">Web Güvenliği</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">&#9760;</div>
+                    <h4>Metasploit</h4>
+                    <p>Exploit Framework</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">&#128038;</div>
+                    <h4>Wireshark</h4>
+                    <p data-tr="Paket Analizi" data-en="Packet Analysis">Paket Analizi</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">&#128273;</div>
+                    <h4>John the Ripper</h4>
+                    <p data-tr="Parola Kırma" data-en="Password Cracking">Parola Kırma</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">&#128225;</div>
+                    <h4>Hydra</h4>
+                    <p>Brute Force</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Write-ups -->
+    <section id="writeups" aria-labelledby="writeups-heading">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 id="writeups-heading">// <span data-tr="Write-ups" data-en="Write-ups">Write-ups</span></h2>
+                <p data-tr="Çözdüğüm makineler ve CTF çözümleri" data-en="Machines I've solved and CTF solutions">Çözdüğüm makineler ve CTF çözümleri</p>
+            </div>
+            <div class="writeups-grid fade-in">
+                <a href="#" target="_blank" rel="noopener noreferrer" class="writeup-card">
+                    <div class="writeup-icon">&#128274;</div>
+                    <h3 data-tr="Yakında..." data-en="Coming Soon...">Yakında...</h3>
+                    <p data-tr="Çözümler yakında eklenecek" data-en="Solutions coming soon">Çözümler yakında eklenecek</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" aria-labelledby="contact-heading">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 id="contact-heading">// <span data-tr="İletişim" data-en="Contact">İletişim</span></h2>
+                <p data-tr="Benimle iletişime geçin" data-en="Get in touch with me">Benimle iletişime geçin</p>
+            </div>
+            <div class="contact-grid fade-in">
+                <a href="mailto:msb.dmr44@gmail.com" class="contact-card">
+                    <div class="contact-icon">&#9993;</div>
+                    <h3 data-tr="E-posta" data-en="Email">E-posta</h3>
+                    <p>msb.dmr44@gmail.com</p>
+                </a>
+                <a href="https://github.com/exilesec" target="_blank" rel="noopener noreferrer" class="contact-card">
+                    <div class="contact-icon">&#128187;</div>
+                    <h3>GitHub</h3>
+                    <p>@exilesec</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <p>&copy; 2026 <span class="footer-line">Musab Umeyr Damar</span> | exilesec</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.setAttribute('data-theme', 'light');
+                icon.innerHTML = '&#9728;';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                icon.innerHTML = '&#9790;';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme
+        (function() {
+            const saved = localStorage.getItem('theme');
+            if (saved) {
+                document.documentElement.setAttribute('data-theme', saved);
+                document.getElementById('theme-icon').innerHTML = saved === 'light' ? '&#9728;' : '&#9790;';
+            }
+        })();
+
+        // Language Toggle
+        let currentLang = localStorage.getItem('lang') || 'tr';
+
+        function toggleLang() {
+            currentLang = currentLang === 'tr' ? 'en' : 'tr';
+            applyLang();
+            localStorage.setItem('lang', currentLang);
+        }
+
+        function applyLang() {
+            const btn = document.getElementById('lang-toggle');
+            btn.textContent = currentLang.toUpperCase();
+            document.documentElement.setAttribute('lang', currentLang);
+
+            document.querySelectorAll('[data-tr][data-en]').forEach(el => {
+                const text = el.getAttribute('data-' + currentLang);
+                if (text) {
+                    el.textContent = text;
+                }
+            });
+        }
+
+        // Load saved language
+        (function() {
+            if (currentLang !== 'tr') {
+                applyLang();
+            }
+        })();
+
+        // Mobile Menu
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+
+        // Close menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+
+        // Scroll Animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Scroll Progress Bar
+        const progressBar = document.getElementById('scrollProgress');
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            progressBar.style.width = scrollPercent + '%';
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>
